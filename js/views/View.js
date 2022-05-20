@@ -16,7 +16,7 @@ export default {
     return this
   },
 
-  //(스스로 이벤트를 방출하는 기능)
+  //(이벤트를 방출하는 기능)
   emit(event, data) {
     const evt = new CustomEvent(event, { detail: data })
     this.el.dispatchEvent(evt)
