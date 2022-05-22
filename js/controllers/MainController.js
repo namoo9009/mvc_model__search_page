@@ -1,4 +1,8 @@
-import FormView from '../views/FormView.js'
+import FormView from '../views/FormView.js';
+import ResultView from '../views/ResultView.js';
+
+import SearchModel from '../models/SearchModel.js';
+
 
 //App.js에서 호출하여 사용
 const tag = '[MainController]'
@@ -10,11 +14,32 @@ export default {
     FormView.setup(document.querySelector('form'))
       .on('@submit', e => this.onSubmit(e.detail.input))
       .on('@reset', e => this.onResetForm())
+
+
+    ResultView.setup(document.querySelector('#search_result'));
   },
+
+  search(query) {
+    console.log(tag, 'search()', query);
+    SearchModel.list(query).then(data => {
+      this.onSearchReasult(data)
+    })
+    this.onSearchReasult([])
+  },
+
   onSubmit(input) {
-    console.log(tag, 'onSubmit()', input)
+    console.log(tag, 'onSubmit()', input);
+    this.search(input);
   },
+
   onResetForm() {
-    console.log(tag, 'onResetForm()')
+    console.log(tag, 'onResetForm()');
+  },
+
+  onSearchReasult(data) {
+    ResultView.render(data)
   }
+  
 }
+
+

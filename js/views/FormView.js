@@ -38,5 +38,5 @@ FormView.onClickReset = function() {
   this.showResetBtn(false);
 }
 
-//MainController에서 FormView 사용하기.
+//MainController에서 FormView 사용하기위해 export.
 export default FormView;
